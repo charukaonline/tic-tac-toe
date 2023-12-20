@@ -3,6 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const cells = document.querySelectorAll(".cell");
     const message = document.getElementById("message");
     const restartBtn = document.getElementById("restartBtn");
+    const resultScreen = document.getElementById("resultScreen");
+    const resultMessage = document.getElementById("resultMessage");
+    const restartBtnResult = document.getElementById("restartBtnResult");
   
     let currentPlayer = "X";
     let gameBoard = ["", "", "", "", "", "", "", "", ""];
@@ -36,8 +39,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const updateMessage = (winner) => {
       if (winner) {
         message.textContent = `${winner} wins!`;
+        showResultScreen(`${winner} wins!`);
       } else if (checkDraw()) {
         message.textContent = "It's a draw!";
+        showResultScreen("It's a draw!");
       } else {
         message.textContent = `Player ${currentPlayer}'s turn`;
       }
@@ -65,6 +70,16 @@ document.addEventListener("DOMContentLoaded", () => {
       gameBoard = ["", "", "", "", "", "", "", "", ""];
       cells.forEach((cell) => (cell.textContent = ""));
       message.textContent = "Player X's turn";
+      hideResultScreen();
+    };
+  
+    const showResultScreen = (result) => {
+      resultMessage.textContent = result;
+      resultScreen.style.display = "flex";
+    };
+  
+    const hideResultScreen = () => {
+      resultScreen.style.display = "none";
     };
   
     cells.forEach((cell, index) => {
@@ -72,6 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   
     restartBtn.addEventListener("click", restartGame);
+    restartBtnResult.addEventListener("click", restartGame);
   
     restartGame();
   });
