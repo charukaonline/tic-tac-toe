@@ -36,10 +36,28 @@ body {
     font-weight: bold;
     cursor: pointer;
     color: #333;
+    transition: background-color 0.3s, transform 0.3s;
   }
   
   .cell:hover {
     background-color: #e0e0e0;
+  }
+
+  .cell.highlight {
+    background-color: #ffcc29;
+  }
+  
+  .cell.move {
+    animation: moveAnimation 0.5s ease-out;
+  }
+  
+  @keyframes moveAnimation {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
   
   .message {
@@ -75,6 +93,16 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
   
   .result-message {

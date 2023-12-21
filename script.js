@@ -47,6 +47,11 @@ document.addEventListener("DOMContentLoaded", () => {
         message.textContent = `Player ${currentPlayer}'s turn`;
       }
     };
+
+    const highlightCell = (index) => {
+      cells[index].classList.add("highlight");
+      setTimeout(() => cells[index].classList.remove("highlight"), 1000);
+    };
   
     const handleCellClick = (index) => {
       if (gameBoard[index] || checkWinner() || checkDraw()) {
@@ -55,6 +60,9 @@ document.addEventListener("DOMContentLoaded", () => {
   
       gameBoard[index] = currentPlayer;
       cells[index].textContent = currentPlayer;
+      cells[index].classList.add("move");
+
+      highlightCell(index);
   
       const winner = checkWinner();
       if (winner || checkDraw()) {
